@@ -1,5 +1,6 @@
 exclude_paths:
   - ./molecule
+  - ./tox
 parseable: true
 skip_list:
   - '204'

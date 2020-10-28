@@ -9,10 +9,10 @@ lint: |
   ansible-lint .
 
 platforms:
-  - name: tomcat
+  - name: tomcat-${TOX_ENVNAME}
+    image: ${MOLECULE_DISTRO:-'idealista/jdk:8u252-stretch-openjdk-headless'}
     groups:
       - tomcat
-    image: ${DOCKER_IMAGE_BASE:-idealista/jdk:8u252-stretch-openjdk-headless}
     privileged: false
     command: '/lib/systemd/systemd'
     capabilities:
@@ -28,7 +28,7 @@ provisioner:
   name: ansible
   inventory:
     group_vars:
-      tomcat:
+      all:
         tomcat_version: ${TOMCAT_VERSION:-9.0.35}
 verifier:
   name: ansible
